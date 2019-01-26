@@ -42,17 +42,6 @@ public class ReticleManager : MonoBehaviour
         this.transform.localPosition = newPos;
     }
 
-    public void MoveReticleLeft()
-    {
-        transform.Translate(Vector3.right * -1, Camera.main.transform);
-    }
-
-    public void MoveReticleRight()
-    {
-        transform.Translate(Vector3.right * 1, Camera.main.transform);
-
-    }
-
     void MoveReticle()
     {
         horizontal = Input.GetAxis("Horizontal");

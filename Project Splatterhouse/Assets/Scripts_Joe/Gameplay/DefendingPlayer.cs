@@ -28,24 +28,6 @@ public class DefendingPlayer : MonoBehaviour
     {
         float _moveHorizontal = Input.GetAxis("Horizontal");
         SendInput(_moveHorizontal);
-        if (GameManager.instance.movingLeft)
-        {
-            MoveLeft();
-        }
-        if (GameManager.instance.movingRight)
-        {
-            MoveRight();
-        }
-    }
-
-    public void MoveLeft()
-    {
-        SendInput(-1);
-    }
-
-    public void MoveRight()
-    {
-        SendInput(1);
     }
 
     void SendInput(float _moveHorizontal)

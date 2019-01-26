@@ -8,6 +8,9 @@ public class TurretManager : MonoBehaviour
     float elapsedTimeSinceFire;
 
     [SerializeField]
+    float projectileVelocity;
+
+    [SerializeField]
     Transform reticle;
 
     [SerializeField]
@@ -24,6 +27,7 @@ public class TurretManager : MonoBehaviour
         LoadMagazine(1);
         pointDir = reticle.position - transform.position;
         elapsedTimeSinceFire = 0f;
+        projectileVelocity = 1f;
     }
 
     // Update is called once per frame
@@ -45,7 +49,7 @@ public class TurretManager : MonoBehaviour
                 projectile.destroyEvent += OnProjectileDestroyed;
                 projectile.startTime = Time.time;
                 projectileRigidbody.gameObject.SetActive(true);
-                projectileRigidbody.AddForce(pointDir, ForceMode.Impulse);
+                projectileRigidbody.AddForce(pointDir * projectileVelocity, ForceMode.Impulse);
                 elapsedTimeSinceFire = 0f;
                 projectileRigidbody.transform.parent = transform.parent;
             }
@@ -82,8 +86,11 @@ public class TurretManager : MonoBehaviour
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
         projectile.gameObject.SetActive(false);
         magazine.Enqueue(projectileRigidbody);
+        projectileRigidbody.velocity = Vector3.zero;
+        projectileRigidbody.angularVelocity = Vector3.zero;
         projectile.transform.parent = ejectionPoint;
         projectile.transform.position = ejectionPoint.position;
         projectile.transform.rotation = ejectionPoint.rotation;
+
     }
 }

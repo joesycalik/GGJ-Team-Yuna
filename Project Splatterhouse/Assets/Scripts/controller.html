@@ -10,7 +10,7 @@
          * Sets up the communication to the screen.
          */
         function init() {
-          airconsole = new AirConsole({"orientation": "landscape"});
+          airconsole = new AirConsole({"orientation": "portrait"});
          
           airconsole.onActivePlayersChange = function(player_number) {
             updateText(player_number);

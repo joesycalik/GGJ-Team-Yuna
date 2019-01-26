@@ -20,7 +20,7 @@ public class FallingPlayerUpdates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        endText = transform.Find("EndText").child.GetComponent<Text>();
+        endText = transform.Find("EndText").GetComponent<Text>();
 
         damagePerMissle = 1;
         numLives = 9;
@@ -49,7 +49,7 @@ public class FallingPlayerUpdates : MonoBehaviour
             endText.text = "Parachute team wins!";
         }
 
-        Vector3 curSpeed = GameObject.Rigidbody.velocity;
+        Vector3 curSpeed = gameObject.GetComponent<Rigidbody>().velocity;
         if (takeCareOfHit) {
             curSpeed.y -= recoilPerMissle;
             takeCareOfHit = false;
@@ -70,7 +70,7 @@ public class FallingPlayerUpdates : MonoBehaviour
         }
 
         //should not be moving in the z direction
-        GameObject.Rigidbody.velocity = new Vector3(curSpeed.x, curSpeed.y, 0);
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(curSpeed.x, curSpeed.y, 0);
     }
 
     //check if the player has taken a hit or is on the ground

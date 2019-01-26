@@ -82,8 +82,14 @@ public class FallingPlayerUpdates : MonoBehaviour
     {
         switch (other.tag)
         {
-            case ("Missle"):
+            case ("Missile"):
+                other.gameObject.GetComponent<Projectile>().TriggerDestroyEvent();
                 isDead = GetHit();
+                if (isDead)
+                {
+                    GoToResults();
+                }
+                
                 break;
         }
     }

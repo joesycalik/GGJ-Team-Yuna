@@ -11,5 +11,5 @@ public class ResultsMenu : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene(1);
-    }
+    } 
 }

@@ -20,7 +20,7 @@ public class FallingPlayerUpdates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        endText = transform.Find("EndText").GetComponent<Text>();
+        //endText = transform.Find("EndText").GetComponent<Text>();
 
         damagePerMissle = 1;
         numLives = 9;
@@ -41,12 +41,12 @@ public class FallingPlayerUpdates : MonoBehaviour
     {
         //go to the game over screen and get destroyed
         if (isDead) {
-            endText.text = "Cannon team wins!";
+            //endText.text = "Cannon team wins!";
         }
 
         //goes to the victory screen
         if (isGrounded) {
-            endText.text = "Parachute team wins!";
+            //endText.text = "Parachute team wins!";
         }
 
         Vector3 curSpeed = gameObject.GetComponent<Rigidbody>().velocity;

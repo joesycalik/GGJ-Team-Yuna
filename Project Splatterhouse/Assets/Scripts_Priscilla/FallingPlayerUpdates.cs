@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FallingPlayerUpdates : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class FallingPlayerUpdates : MonoBehaviour
     public float gravity;
     public float maxSpeed, maxFastFallSpeed, maxXSpeed;
     //keeps track of if the player died, is on the ground, or is falling faster than normal
-    public boolean isDead, isGrounded, isFastFalling, takeCareOfHit;
+    public bool isDead, isGrounded, isFastFalling, takeCareOfHit;
 
     private Text endText;
+    private Animation playerModelAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -55,9 +57,11 @@ public class FallingPlayerUpdates : MonoBehaviour
         //taking care of the player falling speed
         if (isFastFalling && curSpeed.y > maxFastFallSpeed) {
             curSpeed.y = maxFastFallSpeed;
+            //playerModelAnimation.CrossFade("fastFall", 0.3f);
         }
         if (!isFastFalling && curSpeed.y > maxSpeed) {
             curSpeed.y = maxSpeed;
+            //playerModelAnimation.CrossFade("default", 0.3f);
         }
 
         //making sure the player isn't moving too fast horizontally
@@ -90,7 +94,7 @@ public class FallingPlayerUpdates : MonoBehaviour
         }
     }
 
-    private boolean GetHit() {
+    private bool GetHit() {
         numLives -= damagePerMissle;
         takeCareOfHit = true;
         return numLives <= 0;

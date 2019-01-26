@@ -179,32 +179,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 254169949, guid: ee0efd5b58e409642afc9c9e16c86ba0, type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 1940109807}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee0efd5b58e409642afc9c9e16c86ba0, type: 3}
---- !u!1 &254169948 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6902907866438545314, guid: ee0efd5b58e409642afc9c9e16c86ba0,
-    type: 3}
-  m_PrefabInstance: {fileID: 254169947}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &254169949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254169948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37bc2a21c75ea624ab403979cbf532dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileVelocity: 3
-  projectileNum: 25
-  reticle: {fileID: 1412930146}
-  projectilePrefab: {fileID: 733740501563645537, guid: e2a45b97086a8904b8c855a2d2da2024,
-    type: 3}
-  _turretYOffset: 21.5
 --- !u!1 &264741972
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,50 +586,6 @@ MonoBehaviour:
   isGrounded: 0
   isFastFalling: 0
   takeCareOfHit: 0
---- !u!1 &1412930144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1412930146}
-  - component: {fileID: 1412930145}
-  m_Layer: 0
-  m_Name: Reticle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1412930145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412930144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b942b788fbe1cf840a51a7d9f979ffef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _reticleOffsetY: 15
---- !u!4 &1412930146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412930144}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 485, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1758992078
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,4 +629,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1940109805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940109807}
+  - component: {fileID: 1940109806}
+  m_Layer: 0
+  m_Name: Reticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1940109806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940109805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b942b788fbe1cf840a51a7d9f979ffef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reticleOffsetY: 15
+--- !u!4 &1940109807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940109805}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 485, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

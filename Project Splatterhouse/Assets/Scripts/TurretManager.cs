@@ -71,9 +71,6 @@ public class TurretManager : MonoBehaviour
         {
             if (magazine.Count > 0)
             {
-                //playing the sound effect
-                gameObject.GetComponent<AudioSource>().Play(0);
-
                 Rigidbody projectileRigidbody = magazine.Dequeue();
                 Projectile projectile = projectileRigidbody.GetComponent<Projectile>();
                 projectile.destroyEvent += OnProjectileDestroyed;

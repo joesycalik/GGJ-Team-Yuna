@@ -6,19 +6,19 @@ public class CamController : MonoBehaviour
     // This variable is the base difference in y value between the falling object and the camera
     // The camera will always be y units below the falling object
     [SerializeField]
-    int cameraPlayerYDiff;
+    int _cameraYOffset;
 
     // The camera needs to maintain a specific distance from the falling object
     [SerializeField]
     int cameraZOffset;
     #endregion
 
-    GameObject _fallingUnit;
+    GameObject _fallingObject;
 
     #region Unity Core Methods
     private void Start()
     {
-       _fallingUnit = GameObject.FindGameObjectWithTag("FallingObject");
+       _fallingObject = GameObject.FindGameObjectWithTag("FallingObject");
     }
 
     private void Update()
@@ -30,9 +30,18 @@ public class CamController : MonoBehaviour
     #region Camera updates
     void FollowFallingUnit()
     {
+        float yValue;
+        if (_fallingObject.transform.localPosition.y + _cameraYOffset < 5)
+        {
+            yValue = 5;
+        }
+        else
+        {
+            yValue = _fallingObject.transform.localPosition.y + _cameraYOffset;
+        }
         Vector3 newPos = new Vector3(0.0f,
-            _fallingUnit.transform.localPosition.y + cameraPlayerYDiff, 
-            _fallingUnit.transform.localPosition.z + cameraZOffset);
+            yValue, 
+            _fallingObject.transform.localPosition.z + cameraZOffset);
 
         this.transform.localPosition = newPos;
     }

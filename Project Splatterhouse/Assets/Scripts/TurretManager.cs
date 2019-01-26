@@ -8,7 +8,10 @@ public class TurretManager : MonoBehaviour
     float elapsedTimeSinceFire;
 
     [SerializeField]
-    float projectileVelocity;
+    float projectileVelocity = 1f;
+
+    [SerializeField]
+    int projectileNum = 1;
 
     [SerializeField]
     Transform reticle;
@@ -24,10 +27,9 @@ public class TurretManager : MonoBehaviour
     {
         ejectionPoint = transform.Find("Projectiles");
         magazine = new Queue<Rigidbody>();
-        LoadMagazine(1);
+        LoadMagazine(projectileNum);
         pointDir = reticle.position - transform.position;
         elapsedTimeSinceFire = 0f;
-        projectileVelocity = 1f;
     }
 
     // Update is called once per frame

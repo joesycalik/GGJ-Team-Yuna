@@ -78,7 +78,7 @@ public class FallingPlayerUpdates : MonoBehaviour
     {
         switch (other.tag)
         {
-            case ("missle"):
+            case ("Missle"):
                 isDead = GetHit();
                 break;
         }
@@ -88,8 +88,9 @@ public class FallingPlayerUpdates : MonoBehaviour
     {
         switch (other.tag)
         {
-            case ("ground"):
+            case ("Ground"):
                 isGrounded = true;
+                this.gameObject.SetActive(false);
                 break;
         }
     }

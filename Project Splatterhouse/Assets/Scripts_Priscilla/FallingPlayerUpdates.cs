@@ -7,15 +7,16 @@ public class FallingPlayerUpdates : MonoBehaviour
 {
     public int damagePerMissle;
     public int numLives;
-    public float speed;
-    public float recoilPerMissle;
-    public float gravity;
-    public float maxSpeed, maxFastFallSpeed, maxXSpeed;
+    public float recoilPerMissle = 30f;
+    public float maxSpeed = -50f;
+    public float maxFastFallSpeed = -80f;
+    public float maxXSpeed = 20f;
     //keeps track of if the player died, is on the ground, or is falling faster than normal
     public bool isDead, isGrounded, isFastFalling, takeCareOfHit;
 
     private Text endText;
     private Animation playerModelAnimation;
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +26,6 @@ public class FallingPlayerUpdates : MonoBehaviour
         damagePerMissle = 1;
         numLives = 9;
 
-        gravity = 0.05f;
-        recoilPerMissle = 30f;
-        maxSpeed = 50f;
-        maxFastFallSpeed = 80f;
-        maxXSpeed = 20f;
-
         isDead = false;
         isGrounded = false;
         isFastFalling = false;
@@ -39,6 +34,7 @@ public class FallingPlayerUpdates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //go to the game over screen and get destroyed
         if (isDead) {
             //endText.text = "Cannon team wins!";
@@ -47,26 +43,35 @@ public class FallingPlayerUpdates : MonoBehaviour
         //goes to the victory screen
         if (isGrounded) {
             //endText.text = "Parachute team wins!";
+            Debug.Log("grounded");
+            gameObject.SetActive(false);
         }
 
         Vector3 curSpeed = gameObject.GetComponent<Rigidbody>().velocity;
         if (takeCareOfHit) {
-            curSpeed.y -= recoilPerMissle;
+            curSpeed.y += recoilPerMissle;
             takeCareOfHit = false;
         }
         //taking care of the player falling speed
-        if (isFastFalling && curSpeed.y > maxFastFallSpeed) {
+        if (isFastFalling && curSpeed.y < maxFastFallSpeed) {
             curSpeed.y = maxFastFallSpeed;
             //playerModelAnimation.CrossFade("fastFall", 0.3f);
         }
-        if (!isFastFalling && curSpeed.y > maxSpeed) {
+        if (!isFastFalling && curSpeed.y < maxSpeed) {
             curSpeed.y = maxSpeed;
             //playerModelAnimation.CrossFade("default", 0.3f);
         }
 
+        //Debug.Log("speed: " + curSpeed);
+
         //making sure the player isn't moving too fast horizontally
-        if (curSpeed.x > maxXSpeed) {
-            curSpeed.x = maxXSpeed;
+        if (Mathf.Abs(curSpeed.x) > maxXSpeed) {
+            if (curSpeed.x < 0) {
+                curSpeed.x = -maxXSpeed;
+            }
+            else {
+                curSpeed.x = maxXSpeed;
+            }
         }
 
         //should not be moving in the z direction

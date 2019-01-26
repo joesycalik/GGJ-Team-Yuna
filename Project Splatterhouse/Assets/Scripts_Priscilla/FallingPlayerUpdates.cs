@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FallingPlayerUpdates : MonoBehaviour
 {
@@ -90,9 +89,14 @@ public class FallingPlayerUpdates : MonoBehaviour
         {
             case ("Ground"):
                 isGrounded = true;
-                this.gameObject.SetActive(false);
+                GoToResults();
                 break;
         }
+    }
+
+    void GoToResults()
+    {
+        SceneManager.LoadScene(2);
     }
 
     private bool GetHit() {

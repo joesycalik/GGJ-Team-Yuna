@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class FallingPlayerUpdates : MonoBehaviour
 {
-    public int damagePerMissle;
-    public int numLives;
+    public int damagePerMissle = 1;
+    public int numLives = 9;
     public float recoilPerMissle = 30f;
     public float maxSpeed = -50f;
     public float maxFastFallSpeed = -80f;
@@ -21,9 +21,6 @@ public class FallingPlayerUpdates : MonoBehaviour
     void Start()
     {
         //endText = transform.Find("EndText").GetComponent<Text>();
-
-        damagePerMissle = 1;
-        numLives = 9;
 
         isDead = false;
         isGrounded = false;
@@ -112,6 +109,7 @@ public class FallingPlayerUpdates : MonoBehaviour
 
     private bool GetHit() {
         numLives -= damagePerMissle;
+        gameObject.GetComponent<AudioSource>().Play(0);
         takeCareOfHit = true;
         return numLives <= 0;
     }

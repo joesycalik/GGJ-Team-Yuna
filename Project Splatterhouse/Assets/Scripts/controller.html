@@ -15,8 +15,14 @@
           airconsole.onActivePlayersChange = function(player_number) {
             updateText(player_number);
           }
+
           airconsole.onReady = function() {
-            updateText();
+
+          }
+
+          airconsole.onMessage = function(from, data) {
+            console.log("onMessage", from, data);
+            document.getElementById("content").innerHTML = "device " + from + " says: " + data;
           }
     
           /*
@@ -42,19 +48,6 @@
               }
             }
           }
-        }
-    
-        function updateText(player_number) {
-          var div = document.getElementById("player_id");
-          if (airconsole.getActivePlayerDeviceIds().length == 0) {
-            div.innerHTML = "Waiting for more players.";
-          } else if (player_number == undefined) {
-            div.innerHTML = "This is a 2 player game";
-          } else if (player_number == 0) {
-            div.innerHTML = "You are the player on the left";
-          } else if (player_number == 1) {
-            div.innerHTML = "You are the player on the right";
-          };
         }
     
         /**
@@ -107,6 +100,7 @@
         </style>
     </head>
     <body onload="init()">
+      <div id="start">
         <div style="height: 1%"></div>
         <div class=button ontouchstart="join(1)" ontouchend="join(0)">
             <div class="button_label">TEAM 1</div>
@@ -116,5 +110,18 @@
             <div class="button_label">TEAM 2</div>
         </div>
         <div id="player_id"></div>
+      </div>
+      <div id="game_1">
+        <div style="height: 1%"></div>
+        <div class=button ontouchstart="join(1)" ontouchend="join(0)">
+            <div class="button_label">TEAM 1</div>
+        </div>
+      </div>
+      <div id="game_2">
+        <div style="height: 1%"></div>
+        <div class=button ontouchstart="join(1)" ontouchend="join(0)">
+            <div class="button_label">TEAM 1</div>
+        </div>
+      </div>
     </body>
     </html>

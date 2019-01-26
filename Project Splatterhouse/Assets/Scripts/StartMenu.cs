@@ -22,6 +22,8 @@ public class StartMenu : MonoBehaviour
     {
         AddCallbacks();
 
+        title.text = "Connect More Controllers!";
+
         _teamChoices = new int[MAX_PLAYERS] {0, 0, 0, 0};
         _playerButtons = new List<PlayerButtonController>(panel.GetComponentsInChildren<PlayerButtonController>(true));
 	}

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class FallingPlayerUpdates : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class FallingPlayerUpdates : MonoBehaviour
     //keeps track of if the player died, is on the ground, or is falling faster than normal
     public bool isDead, isGrounded, isFastFalling, takeCareOfHit;
 
+    public GameObject LifeHolder;
+    public GameObject Life;
+
     private Text endText;
     private Animation playerModelAnimation;
     private float speed;
@@ -24,6 +29,11 @@ public class FallingPlayerUpdates : MonoBehaviour
 
         damagePerMissle = 1;
         numLives = 9;
+
+        for (int i = 0; i < numLives; i++) {
+            GameObject l = (GameObject) Instantiate(Life, Vector3.zero, Quaternion.identity);
+            l.transform.parent = LifeHolder.transform;
+        }
 
         isDead = false;
         isGrounded = false;
@@ -112,6 +122,8 @@ public class FallingPlayerUpdates : MonoBehaviour
 
     private bool GetHit() {
         numLives -= damagePerMissle;
+        GameObject lastLife = LifeHolder.transform.GetChild(LifeHolder.transform.childCount - 1).gameObject;
+        lastLife.SetActive(false);
         takeCareOfHit = true;
         return numLives <= 0;
     }

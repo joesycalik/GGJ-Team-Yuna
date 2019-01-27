@@ -249,6 +249,11 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     private void AssignControllers()
     {
         bool team1Assignment = false;

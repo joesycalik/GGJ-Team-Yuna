@@ -3,6 +3,8 @@ using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour
     private int attackingPlayer2Fire;
 
     public int[] teamChoices;
+    public int[] tempTeamChoices;
+
     public GameObject airConsoleGO;
 
     public StartMenu startMenu;
@@ -56,7 +60,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(airConsoleGO);
 
         AddCallbacks();
+        
         teamChoices = new int[MAX_PLAYERS] {0, 0, 0, 0};
+        tempTeamChoices = new int[MAX_PLAYERS] {0, 0, 0, 0};
     }
 
     void OnConnect (int deviceId) 
@@ -73,11 +79,6 @@ public class GameManager : MonoBehaviour
 
     void OnMessage(int deviceId, JToken data) 
     {
-        if (teamChoices == null)
-        {
-            return;
-        }
-
         int activePlayer = AirConsole.instance.ConvertDeviceIdToPlayerNumber(deviceId);
 		if (data["join"] != null)
         {
@@ -99,20 +100,6 @@ public class GameManager : MonoBehaviour
         if (teamNum == 1)
         {
             defendingPlayerMovement = controllerInput;
-
-            /*
-            if (controllerInput == 0)
-            {
-                if (GetPlayerNumForTeam(teamNum, activePlayer) == 1)
-                {
-                    movingLeft = false;
-                }
-                else
-                {
-                    movingRight = false;
-                }
-            }
-            */
         }
         else
         {
@@ -166,17 +153,21 @@ public class GameManager : MonoBehaviour
 
     private void ProcessJoin(int activePlayer, int teamChoice)
     {
-        Debug.LogWarning("Player: " + activePlayer + " Team: " + teamChoice);
+        if (tempTeamChoices == null)
+        {
+            return;
+        }
 
         if (CanJoinTeam(teamChoice))
         {
-            teamChoices[activePlayer] = teamChoice;
+            tempTeamChoices[activePlayer] = teamChoice;
 
             startMenu.JoinTeam(activePlayer, teamChoice);
         }
 
         if (ShouldStart())
         {
+            Array.Copy(tempTeamChoices, 0, teamChoices, 0, MAX_PLAYERS);
             AssignControllers();            
             SceneManager.LoadScene("Joe");
         }
@@ -206,7 +197,7 @@ public class GameManager : MonoBehaviour
     {
         int team1Count = 0;
         int team2Count = 0;
-        foreach (int teamNum in teamChoices)
+        foreach (int teamNum in tempTeamChoices)
         {
             if (teamNum == 1)
             {
@@ -230,7 +221,7 @@ public class GameManager : MonoBehaviour
 
         int team1Count = 0;
         int team2Count = 0;
-        foreach (int teamNum in teamChoices)
+        foreach (int teamNum in tempTeamChoices)
         {
             if (teamNum == 1)
             {

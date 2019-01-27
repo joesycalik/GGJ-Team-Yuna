@@ -57,6 +57,7 @@ public class TurretManager : MonoBehaviour
         {
             if (magazine.Count > 0)
             {
+                GameSoundManager.instance.PlayCannonFire();
                 Rigidbody projectileRigidbody = magazine.Dequeue();
                 Projectile projectile = projectileRigidbody.GetComponent<Projectile>();
                 projectile.destroyEvent += OnProjectileDestroyed;

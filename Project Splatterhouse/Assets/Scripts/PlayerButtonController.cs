@@ -15,18 +15,6 @@ public class PlayerButtonController : MonoBehaviour
         button = GetComponent<Button>();
     }
 
-    public void Join()
-    {
-        //label.text = "Joined!";
-        button.image.color = Color.green;
-    }
-
-    public void UnJoin()
-    {
-        //label.text = "Team " + teamNum;
-        button.image.color = Color.white;
-    }
-
     public void SetButtonImage(int teamChoice)
     {
         if (teamChoice == 1)
@@ -36,6 +24,10 @@ public class PlayerButtonController : MonoBehaviour
         else if (teamChoice == 2)
         {
             button.image.sprite = startMenu.attackCat;
+        }
+        else
+        {
+            button.image.sprite = startMenu.defaultButton;
         }
     }
 }

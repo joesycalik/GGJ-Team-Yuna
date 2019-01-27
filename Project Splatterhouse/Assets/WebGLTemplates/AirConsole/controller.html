@@ -15,7 +15,6 @@
           airconsole = new AirConsole({"orientation": "portrait"});
 
           airconsole.onMessage = function(from, data) {
-            alert(data);
             if (data == "menu") {
               document.getElementById("start").style.display = 'block';
               document.getElementById("team_1_1").style.display = 'none';

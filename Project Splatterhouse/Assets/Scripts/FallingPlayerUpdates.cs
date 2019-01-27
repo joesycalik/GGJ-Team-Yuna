@@ -121,6 +121,7 @@ public class FallingPlayerUpdates : MonoBehaviour
     }
 
     private bool GetHit() {
+        GameSoundManager.instance.PlayHitSound();
         numLives -= damagePerMissle;
         GameObject lastLife = LifeHolder.transform.GetChild(LifeHolder.transform.childCount - 1).gameObject;
         lastLife.SetActive(false);

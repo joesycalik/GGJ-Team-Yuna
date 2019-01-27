@@ -97,6 +97,7 @@ public class FallingPlayerUpdates : MonoBehaviour
                 isDead = GetHit();
                 if (isDead)
                 {
+                    GameManager.instance.winningTeam = 2;
                     GoToResults();
                 }
                 
@@ -117,6 +118,7 @@ public class FallingPlayerUpdates : MonoBehaviour
         {
             case ("Ground"):
                 isGrounded = true;
+                GameManager.instance.winningTeam = 1;
                 GoToResults();
                 break;
         }

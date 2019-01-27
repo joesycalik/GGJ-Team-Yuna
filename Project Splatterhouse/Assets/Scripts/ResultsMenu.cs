@@ -7,13 +7,30 @@ public class ResultsMenu : MonoBehaviour
     public Text timeText;
     private float timeLeft;
 
+    public GameObject winningTeam1Image, winningTeam2Image;
+
     public void Awake()
     {
         timeLeft = 5;
     }
 
+    private void Start()
+    {
+        if (GameManager.instance.winningTeam == 1)
+        {
+            winningTeam1Image.gameObject.SetActive(true);
+            winningTeam2Image.gameObject.SetActive(false);
+        }
+        else if (GameManager.instance.winningTeam == 2)
+        {
+            winningTeam1Image.gameObject.SetActive(false);
+            winningTeam2Image.gameObject.SetActive(true);
+        }
+    }
+
     public void ReturnToMenu()
     {
+        GameManager.instance.winningTeam = 0;
         SceneManager.LoadScene(0);
     }
 

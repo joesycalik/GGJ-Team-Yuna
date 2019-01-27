@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public StartMenu startMenu;
 
+    public int winningTeam;
+
     private static GameManager m_instance = null;
     public static GameManager instance
     {

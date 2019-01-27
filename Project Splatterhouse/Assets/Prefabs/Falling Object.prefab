@@ -92,8 +92,6 @@ GameObject:
   - component: {fileID: 497697296161902587}
   - component: {fileID: 497697296161902586}
   - component: {fileID: 497697296161902589}
-  - component: {fileID: 497697296161902591}
-  - component: {fileID: 497697296161902588}
   - component: {fileID: 7878139872642803902}
   m_Layer: 0
   m_Name: Falling Object
@@ -225,40 +223,8 @@ MonoBehaviour:
   isGrounded: 0
   isFastFalling: 0
   takeCareOfHit: 0
---- !u!111 &497697296161902591
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497697296161902580}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!95 &497697296161902588
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497697296161902580}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  LifeHolder: {fileID: 0}
+  Life: {fileID: 16380927057039986, guid: 3d0ecac57e683ef468191df932b8b216, type: 3}
 --- !u!82 &7878139872642803902
 AudioSource:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     public const int MAX_PLAYERS = 4;
     public const int MAX_TEAMS = 2;
 
-    enum Button { Left = -1, Center = 0, Right = 1};
-
     //public bool defendingPlayerMovement;
     //public bool defendingPlayerMovement;
 

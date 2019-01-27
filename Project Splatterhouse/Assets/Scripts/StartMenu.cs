@@ -12,11 +12,6 @@ public class StartMenu : MonoBehaviour
 
     public Sprite attackCat, chuteCat, defaultButton;
 
-    void Awake() 
-    {
-        title.text = "CONNECT MORE CONTROLLERS";
-	}
-
     public void Init()
     {
         _playerButtons = new List<PlayerButtonController>(panel.GetComponentsInChildren<PlayerButtonController>(true));

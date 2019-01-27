@@ -41,7 +41,7 @@ public class CamController : MonoBehaviour
         }
         Vector3 newPos = new Vector3(0.0f,
             yValue, 
-            _fallingObject.transform.localPosition.z + cameraZOffset);
+            cameraZOffset);
 
         this.transform.localPosition = newPos;
     }

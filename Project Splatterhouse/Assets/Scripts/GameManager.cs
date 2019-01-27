@@ -177,9 +177,7 @@ public class GameManager : MonoBehaviour
 
         if (ShouldStart())
         {
-            AssignControllers();
-            RemoveCallbacks();
-            
+            AssignControllers();            
             SceneManager.LoadScene("Joe");
         }
     }

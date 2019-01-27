@@ -15,15 +15,12 @@ public class FallingPlayerUpdates : MonoBehaviour
     //keeps track of if the player died, is on the ground, or is falling faster than normal
     public bool isDead, isGrounded, isFastFalling, takeCareOfHit;
 
-    private Text endText;
     private Animation playerModelAnimation;
     private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        //endText = transform.Find("EndText").GetComponent<Text>();
-
         isDead = false;
         isGrounded = false;
         isFastFalling = false;
@@ -35,12 +32,10 @@ public class FallingPlayerUpdates : MonoBehaviour
         
         //go to the game over screen and get destroyed
         if (isDead) {
-            //endText.text = "Cannon team wins!";
         }
 
         //goes to the victory screen
         if (isGrounded) {
-            //endText.text = "Parachute team wins!";
             Debug.Log("grounded");
             gameObject.SetActive(false);
         }
@@ -53,14 +48,10 @@ public class FallingPlayerUpdates : MonoBehaviour
         //taking care of the player falling speed
         if (isFastFalling && curSpeed.y < maxFastFallSpeed) {
             curSpeed.y = maxFastFallSpeed;
-            //playerModelAnimation.CrossFade("fastFall", 0.3f);
         }
         if (!isFastFalling && curSpeed.y < maxSpeed) {
             curSpeed.y = maxSpeed;
-            //playerModelAnimation.CrossFade("default", 0.3f);
         }
-
-        //Debug.Log("speed: " + curSpeed);
 
         //making sure the player isn't moving too fast horizontally
         if (Mathf.Abs(curSpeed.x) > maxXSpeed) {

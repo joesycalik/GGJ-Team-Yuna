@@ -23,21 +23,7 @@ public class MovingTurretManager : TurretManager
 
     void MoveTurret()
     {
-        float joystick = 0f;
-        //left
-        if (playerNum == 1)
-        {
-            joystick = Input.GetAxis("Horizontal");
-            //TODO: new input from Airconsole
-            //Input from airconsole needs to be a float between -1 and 1
-        }
-        //right
-        else
-        {
-            //TODO: new input from Airconsole
-            //Input from airconsole needs to be a float between -1 and 1
-            joystick = Input.GetAxis("Vertical");
-        }
+        float joystick = GameManager.instance.GetAttackMovementInput(playerNum);
         transform.Translate(Vector3.right * joystick, Camera.main.transform);
     }
 }

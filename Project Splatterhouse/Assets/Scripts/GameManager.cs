@@ -9,14 +9,18 @@ public class GameManager : MonoBehaviour
     public const int MAX_PLAYERS = 4;
     public const int MAX_TEAMS = 2;
 
-    public bool movingLeft;
-    public bool movingRight;
+    enum Button { Left = -1, Center = 0, Right = 1};
 
-    public int player1Movement;
-    public int player2Movement;
+    //public bool defendingPlayerMovement;
+    //public bool defendingPlayerMovement;
 
-    public int player1Fire;
-    public int player1Fire;
+    public int defendingPlayerMovement;
+
+    private int attackingPlayer1Movement;
+    private int attackingPlayer2Movement;
+
+    private int attackingPlayer1Fire;
+    private int attackingPlayer2Fire;
 
     public int[] teamChoices;
     public GameObject airConsoleGO;
@@ -45,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (m_instance != null && m_instance != this)
         {
-            DestroyObject(gameObject);
+            Destroy(gameObject);
             return;
         }
         m_instance = this;
@@ -83,29 +87,23 @@ public class GameManager : MonoBehaviour
         }
         if (data["move"] != null)
         {
-            ProcessMove(activePlayer, (int)data["move"]);
+            ProcessMovement(activePlayer, (int)data["move"]);
         }
         if (data["fire"] != null)
         {
-            ProcessFire(activePlayer, (int)data["fire"]);
+            ProcessFire(GetPlayerNumForTeam(2, activePlayer), (int)data["fire"]);
         }   
 	}
 
-    private void ProcessMove(int activePlayer, int button)
+    private void ProcessMovement(int activePlayer, int controllerInput)
     {
         int teamNum = teamChoices[activePlayer];
         if (teamNum == 1)
         {
-            if (amount < 0)
-            {
-                movingLeft = true;
-            }
-            if (amount > 0)
-            {
-                movingRight = true;
-            }
+            defendingPlayerMovement = controllerInput;
 
-            if (amount == 0)
+            /*
+            if (controllerInput == 0)
             {
                 if (GetPlayerNumForTeam(teamNum, activePlayer) == 1)
                 {
@@ -116,52 +114,57 @@ public class GameManager : MonoBehaviour
                     movingRight = false;
                 }
             }
+            */
         }
         else
         {
             if (GetPlayerNumForTeam(teamNum, activePlayer) == 1)
             {
-                player1Turning = amount;
+                attackingPlayer1Movement = controllerInput;
             }
             else
             {
-                player2Turning = amount;
+                attackingPlayer2Movement = controllerInput;
             }
         }
     }
 
-    private void ProcessFire(int activePlayer, int button)
+    private void ProcessFire(int activePlayer, int controllerInput)
     {
-        if (player == 1)
+        if (activePlayer == 1)
         {
-            return player1Turning;
+            attackingPlayer1Fire = controllerInput;
         }
         else
         {
-            return player2Turning;
+            attackingPlayer2Fire = controllerInput;
         }
     }
 
-    public int GetPlayerFiringInput(int player)
+    public int GetAttackFireInput(int playerNum)
     {
-        if (player == 1)
+        if (playerNum == 1)
         {
-            return player1Firing;
+            return attackingPlayer1Fire;
         }
         else
         {
-            return player2Firing;
+            return attackingPlayer2Fire;
         }
     }
 
-    private void ProcessFire(int activePlayer, int amount)
+    public int GetAttackMovementInput(int playerNum)
     {
-        int teamNum = teamChoices[activePlayer];
-        if (teamNum == 2)
+        if (playerNum == 1)
         {
-            
+            return attackingPlayer1Movement;
+        }
+        else
+        {
+            return attackingPlayer2Movement;
         }
     }
+
 
     private void ProcessJoin(int activePlayer, int teamChoice)
     {
@@ -185,7 +188,7 @@ public class GameManager : MonoBehaviour
 
     private int GetPlayerNumForTeam(int teamNum, int playerNum)
     {
-        for (int i = 0; i > MAX_PLAYERS; i++)
+        for (int i = 0; i < MAX_PLAYERS; i++)
         {
             if (teamChoices[i] == teamNum)
             {

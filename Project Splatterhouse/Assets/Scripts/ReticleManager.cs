@@ -53,7 +53,7 @@ public class ReticleManager : MonoBehaviour
 
     void MoveReticle()
     {
-        float joystick = 0f;
+        float joystick = GameManager.instance.GetAttackMovementInput(playerNum);
         transform.Translate(Vector3.right * joystick, Camera.main.transform);
     }
 }

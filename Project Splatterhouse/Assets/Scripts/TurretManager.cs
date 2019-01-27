@@ -17,7 +17,7 @@ public class TurretManager : MonoBehaviour
 
     GameObject _fallingObject;
 
-    public int playerNum { get; set; }
+    public int playerNum;
 
     [SerializeField]
     float _turretYOffset;
@@ -52,7 +52,8 @@ public class TurretManager : MonoBehaviour
 
     protected void FireProjectile (Vector3 dir)
     {
-        if (Input.GetButtonDown("Fire1") && elapsedTimeSinceFire >= 1f)
+        int fire = GameManager.instance.GetAttackFireInput(playerNum);
+        if (fire != 0 && elapsedTimeSinceFire >= 1f)
         {
             if (magazine.Count > 0)
             {

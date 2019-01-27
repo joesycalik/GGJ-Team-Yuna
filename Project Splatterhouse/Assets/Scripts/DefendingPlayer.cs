@@ -26,7 +26,8 @@ public class DefendingPlayer : MonoBehaviour
     #region Input Handling
     void CheckInput()
     {
-        float _moveHorizontal = Input.GetAxis("Horizontal");
+        //float _moveHorizontal = Input.GetAxis("Horizontal");
+        float _moveHorizontal = GameManager.instance.defendingPlayerMovement;
         SendInput(_moveHorizontal);
     }
 

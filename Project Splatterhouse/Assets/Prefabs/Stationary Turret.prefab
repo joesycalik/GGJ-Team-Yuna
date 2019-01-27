@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5335822762911592860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.19, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5335822763359060976}
@@ -239,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5335822763359060977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 479.24, z: 0}
+  m_LocalPosition: {x: 9, y: 638.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5335822762911592859}
@@ -259,9 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaac04380bcca2488a8dcfa715939df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileVelocity: 3
+  projectileVelocity: 1
   projectileNum: 20
-  projectilePrefab: {fileID: 733740501563645537, guid: e2a45b97086a8904b8c855a2d2da2024,
+  projectilePrefab: {fileID: 5474733175904739960, guid: f7ab6fa8dd8104c4e8989e22599a1884,
     type: 3}
+  playerNum: 0
   _turretYOffset: 21.5
   reticle: {fileID: 0}

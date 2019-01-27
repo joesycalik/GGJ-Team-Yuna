@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MovingTurretManager : TurretManager
 {
-    [SerializeField]
-    int playerNum;
-
     // Start is called before the first frame update
     void Start()
     {

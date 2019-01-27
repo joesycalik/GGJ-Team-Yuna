@@ -59,12 +59,14 @@ public class ReticleManager : MonoBehaviour
         {
             joystick = Input.GetAxis("Horizontal");
             //TODO: new input from Airconsole
+            //Input from airconsole needs to be a float between -1 and 1
         }
         //right
         else
         {
             //TODO: new input from Airconsole
             joystick = Input.GetAxis("Vertical");
+            //Input from airconsole needs to be a float between -1 and 1
         }
         transform.Translate(Vector3.right * joystick, Camera.main.transform);
     }

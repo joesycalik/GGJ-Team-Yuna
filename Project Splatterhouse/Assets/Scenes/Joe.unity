@@ -195,7 +195,7 @@ PrefabInstance:
     - target: {fileID: 1155785703, guid: ee0efd5b58e409642afc9c9e16c86ba0, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 5652110368297828966, guid: 5823091b23f9648409ce87e8d35b57b8,
+      objectReference: {fileID: 5474733175904739960, guid: f7ab6fa8dd8104c4e8989e22599a1884,
         type: 3}
     - target: {fileID: 1155785703, guid: ee0efd5b58e409642afc9c9e16c86ba0, type: 3}
       propertyPath: playerNum
@@ -290,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 1155785703, guid: ee0efd5b58e409642afc9c9e16c86ba0, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 5652110368297828966, guid: 5823091b23f9648409ce87e8d35b57b8,
+      objectReference: {fileID: 5474733175904739960, guid: f7ab6fa8dd8104c4e8989e22599a1884,
         type: 3}
     - target: {fileID: 1155785703, guid: ee0efd5b58e409642afc9c9e16c86ba0, type: 3}
       propertyPath: playerNum

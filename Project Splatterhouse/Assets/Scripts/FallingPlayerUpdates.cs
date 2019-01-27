@@ -28,7 +28,12 @@ public class FallingPlayerUpdates : MonoBehaviour
         //endText = transform.Find("EndText").GetComponent<Text>();
 
         damagePerMissle = 1;
+<<<<<<< HEAD
+        //umLives = 9;
+        currentLives = numLives - 1;
+=======
         numLives = 9;
+>>>>>>> master
 
         for (int i = 0; i < numLives; i++) {
             GameObject l = (GameObject) Instantiate(Life, Vector3.zero, Quaternion.identity);

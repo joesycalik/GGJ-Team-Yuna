@@ -14,7 +14,7 @@ public class StartMenu : MonoBehaviour
 
     void Awake() 
     {
-        title.text = "Connect More Controllers!";
+        title.text = "CONNECT MORE CONTROLLERS";
 	}
 
     public void Init()
@@ -26,7 +26,7 @@ public class StartMenu : MonoBehaviour
             pbc.gameObject.SetActive(true);
         }
 
-        title.text = "Hold to Join!";
+        title.text = "HOLD TO JOIN";
     }
 
     public void JoinTeam(int activePlayer, int teamChoice)

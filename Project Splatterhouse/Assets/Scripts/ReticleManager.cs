@@ -5,11 +5,15 @@ using UnityEngine;
 public class ReticleManager : MonoBehaviour
 {
     float horizontal;
+    float vertical;
 
     GameObject _fallingObject;
 
     [SerializeField]
     float _reticleOffsetY;
+
+    [SerializeField]
+    int playerNum;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,11 @@ public class ReticleManager : MonoBehaviour
     {
         UpdatePosition();
         MoveReticle();
+    }
+
+    public void SetInitialPosition(Transform turretPosition)
+    {
+        transform.SetPositionAndRotation(new Vector3(turretPosition.position.x, turretPosition.position.y - _reticleOffsetY, turretPosition.position.z), transform.rotation);
     }
 
     void UpdatePosition()
@@ -44,7 +53,19 @@ public class ReticleManager : MonoBehaviour
 
     void MoveReticle()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontal, Camera.main.transform);
+        float joystick = 0f;
+        //left
+        if (playerNum == 1)
+        {
+            joystick = Input.GetAxis("Horizontal");
+            //TODO: new input from Airconsole
+        }
+        //right
+        else
+        {
+            //TODO: new input from Airconsole
+            joystick = Input.GetAxis("Vertical");
+        }
+        transform.Translate(Vector3.right * joystick, Camera.main.transform);
     }
 }

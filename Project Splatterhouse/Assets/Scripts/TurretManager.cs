@@ -4,50 +4,34 @@ using UnityEngine;
 
 public class TurretManager : MonoBehaviour
 {
-    Vector3 pointDir;
-    float elapsedTimeSinceFire;
+    protected float elapsedTimeSinceFire;
+    public float projectileVelocity = 1f;
 
-    [SerializeField]
-    float projectileVelocity = 1f;
+    public int projectileNum = 1;
 
-    [SerializeField]
-    int projectileNum = 1;
-
-    [SerializeField]
-    Transform reticle;
-
-    [SerializeField]
-    Transform projectilePrefab;
+    public Transform projectilePrefab;
 
     Transform ejectionPoint;
+
     Queue<Rigidbody> magazine;
 
     GameObject _fallingObject;
 
+    public int playerNum { get; set; }
+
     [SerializeField]
     float _turretYOffset;
 
-    // Start is called before the first frame update
-    void Start()
+    protected void Init()
     {
         _fallingObject = GameObject.FindGameObjectWithTag("FallingObject");
         ejectionPoint = transform.Find("Projectiles");
         magazine = new Queue<Rigidbody>();
         LoadMagazine(projectileNum);
-        pointDir = reticle.position - transform.position;
         elapsedTimeSinceFire = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        UpdatePosition();
-        RotateBase(reticle.position);
-        FireProjectile();
-        elapsedTimeSinceFire += Time.deltaTime;
-    }
-
-    void UpdatePosition()
+    protected void UpdatePosition()
     {
         float yValue;
         if (_fallingObject.transform.localPosition.y - _turretYOffset < 0)
@@ -63,9 +47,10 @@ public class TurretManager : MonoBehaviour
             this.transform.localPosition.z);
 
         this.transform.localPosition = newPos;
+        elapsedTimeSinceFire += Time.deltaTime;
     }
 
-    void FireProjectile ()
+    protected void FireProjectile (Vector3 dir)
     {
         if (Input.GetButtonDown("Fire1") && elapsedTimeSinceFire >= 1f)
         {
@@ -76,7 +61,7 @@ public class TurretManager : MonoBehaviour
                 projectile.destroyEvent += OnProjectileDestroyed;
                 projectile.startTime = Time.time;
                 projectileRigidbody.gameObject.SetActive(true);
-                projectileRigidbody.AddForce(pointDir * projectileVelocity, ForceMode.Impulse);
+                projectileRigidbody.AddForce(dir * projectileVelocity, ForceMode.Impulse);
                 elapsedTimeSinceFire = 0f;
                 projectileRigidbody.transform.parent = transform.parent;
             }
@@ -101,13 +86,6 @@ public class TurretManager : MonoBehaviour
         return projectile;
     }
 
-    void RotateBase (Vector3 target)
-    {
-        pointDir = target - transform.position;
-        float angle = Mathf.Atan2(pointDir.x, pointDir.y) * -Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-
     void OnProjectileDestroyed (Projectile projectile)
     {
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
@@ -118,6 +96,5 @@ public class TurretManager : MonoBehaviour
         projectile.transform.parent = ejectionPoint;
         projectile.transform.position = ejectionPoint.position;
         projectile.transform.rotation = ejectionPoint.rotation;
-
     }
 }

@@ -6,23 +6,39 @@
         <script type="text/javascript">
     
         var airconsole;
+
         /**
          * Sets up the communication to the screen.
          */
         function init() {
+
           airconsole = new AirConsole({"orientation": "portrait"});
-         
-          airconsole.onActivePlayersChange = function(player_number) {
-            updateText(player_number);
-          }
-
-          airconsole.onReady = function() {
-
-          }
 
           airconsole.onMessage = function(from, data) {
-            console.log("onMessage", from, data);
-            document.getElementById("content").innerHTML = "device " + from + " says: " + data;
+            if (data == "menu") {
+              document.getElementById("start").style.display = 'block';
+              document.getElementById("team_1_1").style.display = 'none';
+              document.getElementById("team_1_2").style.display = 'none';
+              document.getElementById("team_2").style.display = 'none';
+            }
+            else if (data == "team_1_1") {
+              document.getElementById("start").style.display = 'none';
+              document.getElementById("team_1_1").style.display = 'block';
+              document.getElementById("team_1_2").style.display = 'none';
+              document.getElementById("team_2").style.display = 'none';
+            }
+            else if (data == "team_1_2") {
+              document.getElementById("start").style.display = 'none';
+              document.getElementById("team_1_1").style.display = 'none';
+              document.getElementById("team_1_2").style.display = 'block';
+              document.getElementById("team_2").style.display = 'none';
+            }
+            else if (data == "team_2") {
+              document.getElementById("start").style.display = 'none';
+              document.getElementById("team_1_1").style.display = 'none';
+              document.getElementById("team_1_2").style.display = 'none';
+              document.getElementById("team_2").style.display = 'block';
+            }
           }
     
           /*
@@ -57,6 +73,14 @@
         function join(number) {
           airconsole.message(AirConsole.SCREEN, {join: number})
         }
+
+        function move(number) {
+          airconsole.message(AirConsole.SCREEN, {move: number})
+        }
+
+        function fire(number) {
+          airconsole.message(AirConsole.SCREEN, {fire: number});
+        }
     
         </script>
         <style type="text/css">
@@ -77,6 +101,14 @@
                 display: inline-block;
                 height: 45%;
                 width: 98%;
+                background-color: #222;
+                position: relative;
+            }
+
+            .button_2 {
+                display: inline-block;
+                height: 45%;
+                width: 49%;
                 background-color: #222;
                 position: relative;
             }
@@ -119,17 +151,29 @@
         </div>
         <div id="player_id"></div>
       </div>
-      <div id="game_1">
-        <div style="height: 1%"></div>
-        <div class=button ontouchstart="join(1)" ontouchend="join(0)">
-            <div class="button_label">TEAM 1</div>
+      <div id="team_1_1">
+        <div class=button ontouchstart="move(-1)" ontouchend="move(0)">
+          <div class="button_label">LEFT</div>
         </div>
       </div>
-      <div id="game_2">
-        <div style="height: 1%"></div>
-        <div class=button ontouchstart="join(1)" ontouchend="join(0)">
-            <div class="button_label">TEAM 1</div>
+      <div id="team_1_2">
+        <div class=button ontouchstart="move(1)" ontouchend="move(0)">
+          <div class="button_label">RIGHT</div>
         </div>
+      </div>
+      <div id="team_2">
+        <div style="height: 1%"></div>
+        <div class=button ontouchstart="fire(1)" ontouchend="fire(0)">
+          <div class="button_label">FIRE</div>
+        </div>
+        <div style="height: 1%"></div>
+        <div class=button_2 ontouchstart="move(-1)" ontouchend="move(0)">
+          <div class="button_label">LEFT</div>
+        </div>
+        <div class=button_2 ontouchstart="move(1)" ontouchend="move(0)">
+          <div class="button_label">RIGHT</div>
+        </div>
+        <div style="height: 1%"></div>
       </div>
     </body>
     </html>

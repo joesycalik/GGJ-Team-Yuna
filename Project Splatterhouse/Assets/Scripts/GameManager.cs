@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(airConsoleGO);
+        DontDestroyOnLoad(startMenu);
 
         AddCallbacks();
         
@@ -170,7 +171,8 @@ public class GameManager : MonoBehaviour
         if (ShouldStart())
         {
             Array.Copy(tempTeamChoices, 0, teamChoices, 0, MAX_PLAYERS);
-            AssignControllers();            
+            AssignControllers();
+            startMenu.gameObject.SetActive(false);       
             SceneManager.LoadScene("Joe");
         }
     }
@@ -268,6 +270,17 @@ public class GameManager : MonoBehaviour
             {
                 AirConsole.instance.Message(controllerId, "team_2");
             }
+        }
+    }
+
+    public void ReinitControllers()
+    {
+        bool team1Assignment = false;
+        for (int i = 0; i < MAX_PLAYERS; i++)
+        {
+            int controllerId = AirConsole.instance.GetControllerDeviceIds()[i];
+
+            AirConsole.instance.Message(controllerId, "menu");
         }
     }
 

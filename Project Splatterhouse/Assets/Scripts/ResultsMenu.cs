@@ -31,6 +31,10 @@ public class ResultsMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         GameManager.instance.winningTeam = 0;
+
+        GameManager.instance.startMenu.gameObject.SetActive(true);
+        GameManager.instance.ReinitControllers();
+        
         SceneManager.LoadScene(0);
     }
 

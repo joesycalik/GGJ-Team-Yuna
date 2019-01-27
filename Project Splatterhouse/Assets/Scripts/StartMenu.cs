@@ -8,11 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    private const int MAX_PLAYERS = 4;
-    private const int MAX_TEAMS = 2;
-
-    private int[] _teamChoices;
-
     private List<PlayerButtonController> _playerButtons;
 
     public GameObject panel;
@@ -25,15 +20,13 @@ public class StartMenu : MonoBehaviour
         AddCallbacks();
 
         title.text = "Connect More Controllers!";
-
-        _teamChoices = new int[MAX_PLAYERS] {0, 0, 0, 0};
         _playerButtons = new List<PlayerButtonController>(panel.GetComponentsInChildren<PlayerButtonController>(true));
 	}
 
     void OnConnect (int deviceId) 
     {
 		if (AirConsole.instance.GetActivePlayerDeviceIds.Count == 0 &&
-            AirConsole.instance.GetControllerDeviceIds ().Count >= MAX_PLAYERS)
+            AirConsole.instance.GetControllerDeviceIds ().Count >= GameManager.GetMaxPlayers())
         {
 			AirConsole.instance.SetActivePlayers(4);
             Debug.LogWarning("Ready!");
@@ -49,7 +42,7 @@ public class StartMenu : MonoBehaviour
 
     void OnMessage(int deviceId, JToken data) 
     {
-        if (_teamChoices == null)
+        if (GameManager.instance.teamChoices == null)
         {
             return;
         }
@@ -61,7 +54,7 @@ public class StartMenu : MonoBehaviour
 
         if (CanJoinTeam(teamChoice))
         {
-            _teamChoices[activePlayer] = teamChoice;
+            GameManager.instance.teamChoices[activePlayer] = teamChoice;
 
             if (teamChoice > 0)
             {
@@ -85,7 +78,7 @@ public class StartMenu : MonoBehaviour
     {
         int team1Count = 0;
         int team2Count = 0;
-        foreach (int teamNum in _teamChoices)
+        foreach (int teamNum in GameManager.instance.teamChoices)
         {
             if (teamNum == 1)
             {
@@ -109,7 +102,7 @@ public class StartMenu : MonoBehaviour
 
         int team1Count = 0;
         int team2Count = 0;
-        foreach (int teamNum in _teamChoices)
+        foreach (int teamNum in GameManager.instance.teamChoices)
         {
             if (teamNum == 1)
             {

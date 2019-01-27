@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour
     public bool movingLeft;
     public bool movingRight;
 
-    public int player1Turning;
-    public int player1Firing;
-    public int player2Turning;
-    public int player2Firing;
+    public int player1Movement;
+    public int player2Movement;
+
+    public int player1Fire;
+    public int player1Fire;
 
     public int[] teamChoices;
     public GameObject airConsoleGO;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
         }   
 	}
 
-    private void ProcessMove(int activePlayer, int amount)
+    private void ProcessMove(int activePlayer, int button)
     {
         int teamNum = teamChoices[activePlayer];
         if (teamNum == 1)
@@ -129,7 +130,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int GetPlayerMovementInput(int player)
+    private void ProcessFire(int activePlayer, int button)
     {
         if (player == 1)
         {

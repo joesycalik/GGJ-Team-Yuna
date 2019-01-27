@@ -18,6 +18,8 @@ public class StartMenu : MonoBehaviour
     public GameObject panel;
     public Text title;
 
+    public Sprite attackCat, chuteCat;
+
     void Awake() 
     {
         AddCallbacks();
@@ -64,6 +66,7 @@ public class StartMenu : MonoBehaviour
             if (teamChoice > 0)
             {
                 _playerButtons[activePlayer].Join();
+                _playerButtons[activePlayer].SetButtonImage(teamChoice);
             }
             else
             {

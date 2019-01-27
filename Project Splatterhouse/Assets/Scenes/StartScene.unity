@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 1012696254}
+  startMenu: {fileID: 2009174530}
 --- !u!114 &286470305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 1724926160}
+  startMenu: {fileID: 2009174530}
 --- !u!114 &339284383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 2109743342}
+  startMenu: {fileID: 2009174530}
 --- !u!114 &912957078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 239977349}
+  startMenu: {fileID: 2009174530}
 --- !u!114 &1879025356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,7 +1340,7 @@ GameObject:
   - component: {fileID: 2009174531}
   - component: {fileID: 2009174530}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Start Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1356,6 +1360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 881166824}
   title: {fileID: 852341409}
+  attackCat: {fileID: 21300000, guid: f9c072c661e96c6419e0e9b8763d96cc, type: 3}
+  chuteCat: {fileID: 21300000, guid: 584086931a64c61438ada1362d5372f6, type: 3}
 --- !u!114 &2009174531
 MonoBehaviour:
   m_ObjectHideFlags: 0

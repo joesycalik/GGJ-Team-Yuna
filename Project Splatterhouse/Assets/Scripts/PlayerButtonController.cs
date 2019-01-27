@@ -7,6 +7,8 @@ public class PlayerButtonController : MonoBehaviour
 {
     public Text label;
     private Button button;
+    [SerializeField]
+    public StartMenu startMenu;
 
     void Awake()
     {
@@ -23,5 +25,17 @@ public class PlayerButtonController : MonoBehaviour
     {
         //label.text = "Team " + teamNum;
         button.image.color = Color.white;
+    }
+
+    public void SetButtonImage(int teamChoice)
+    {
+        if (teamChoice == 1)
+        {
+            button.image.sprite = startMenu.chuteCat;
+        }
+        else if (teamChoice == 2)
+        {
+            button.image.sprite = startMenu.attackCat;
+        }
     }
 }

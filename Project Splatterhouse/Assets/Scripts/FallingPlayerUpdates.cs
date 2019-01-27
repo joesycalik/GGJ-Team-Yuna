@@ -28,12 +28,7 @@ public class FallingPlayerUpdates : MonoBehaviour
         //endText = transform.Find("EndText").GetComponent<Text>();
 
         damagePerMissle = 1;
-<<<<<<< HEAD
-        //umLives = 9;
-        currentLives = numLives - 1;
-=======
         numLives = 9;
->>>>>>> master
 
         for (int i = 0; i < numLives; i++) {
             GameObject l = (GameObject) Instantiate(Life, Vector3.zero, Quaternion.identity);
@@ -111,7 +106,7 @@ public class FallingPlayerUpdates : MonoBehaviour
                 break;
 
             case "Right Edge":
-                this.gameObject.transform.localPosition = new Vector3(-17, this.gameObject.transform.localPosition.y, 1);
+                this.gameObject.transform.localPosition = new Vector3(-17f, this.gameObject.transform.localPosition.y, 1);
                 break;
         }
     }

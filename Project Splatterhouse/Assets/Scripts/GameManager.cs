@@ -2,6 +2,7 @@
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,13 +12,10 @@ public class GameManager : MonoBehaviour
     public bool movingLeft;
     public bool movingRight;
 
-    public bool player1TurningLeft;
-    public bool player1TurningRight;
-    public bool player1Firing;
-
-    public bool player2TurningLeft;
-    public bool player2TurningRight;
-    public bool player2Firing;
+    public int player1Turning;
+    public int player1Firing;
+    public int player2Turning;
+    public int player2Firing;
 
     public int[] teamChoices;
     public GameObject airConsoleGO;
@@ -94,12 +92,74 @@ public class GameManager : MonoBehaviour
 
     private void ProcessMove(int activePlayer, int amount)
     {
+        int teamNum = teamChoices[activePlayer];
+        if (teamNum == 1)
+        {
+            if (amount < 0)
+            {
+                movingLeft = true;
+            }
+            if (amount > 0)
+            {
+                movingRight = true;
+            }
 
+            if (amount == 0)
+            {
+                if (GetPlayerNumForTeam(teamNum, activePlayer) == 1)
+                {
+                    movingLeft = false;
+                }
+                else
+                {
+                    movingRight = false;
+                }
+            }
+        }
+        else
+        {
+            if (GetPlayerNumForTeam(teamNum, activePlayer) == 1)
+            {
+                player1Turning = amount;
+            }
+            else
+            {
+                player2Turning = amount;
+            }
+        }
+    }
+
+    public int GetPlayerMovementInput(int player)
+    {
+        if (player == 1)
+        {
+            return player1Turning;
+        }
+        else
+        {
+            return player2Turning;
+        }
+    }
+
+    public int GetPlayerFiringInput(int player)
+    {
+        if (player == 1)
+        {
+            return player1Firing;
+        }
+        else
+        {
+            return player2Firing;
+        }
     }
 
     private void ProcessFire(int activePlayer, int amount)
     {
-
+        int teamNum = teamChoices[activePlayer];
+        if (teamNum == 2)
+        {
+            
+        }
     }
 
     private void ProcessJoin(int activePlayer, int teamChoice)
@@ -120,6 +180,26 @@ public class GameManager : MonoBehaviour
             
             SceneManager.LoadScene("Joe");
         }
+    }
+
+    private int GetPlayerNumForTeam(int teamNum, int playerNum)
+    {
+        for (int i = 0; i > MAX_PLAYERS; i++)
+        {
+            if (teamChoices[i] == teamNum)
+            {
+                if (i == playerNum)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+        }
+
+        return -1;
     }
 
     private bool ShouldStart()

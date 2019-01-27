@@ -21,6 +21,7 @@ public class FallingPlayerUpdates : MonoBehaviour
     private Text endText;
     private Animation playerModelAnimation;
     private float speed;
+    private int curLives;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class FallingPlayerUpdates : MonoBehaviour
         //endText = transform.Find("EndText").GetComponent<Text>();
 
         damagePerMissle = 1;
-        numLives = 9;
+        curLives = numLives - 1;
 
         for (int i = 0; i < numLives; i++) {
             GameObject l = (GameObject) Instantiate(Life, Vector3.zero, Quaternion.identity);
@@ -131,8 +132,8 @@ public class FallingPlayerUpdates : MonoBehaviour
 
     private bool GetHit() {
         GameSoundManager.instance.PlayHitSound();
-        numLives -= damagePerMissle;
-        GameObject lastLife = LifeHolder.transform.GetChild(LifeHolder.transform.childCount - 1).gameObject;
+        GameObject lastLife = LifeHolder.transform.GetChild(LifeHolder.transform.childCount - (numLives - curLives)).gameObject;
+        curLives -= damagePerMissle;
         lastLife.SetActive(false);
         takeCareOfHit = true;
         return numLives <= 0;

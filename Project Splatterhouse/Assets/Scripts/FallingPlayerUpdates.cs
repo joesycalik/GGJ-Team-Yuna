@@ -106,7 +106,7 @@ public class FallingPlayerUpdates : MonoBehaviour
                 break;
 
             case "Right Edge":
-                this.gameObject.transform.localPosition = new Vector3(-17, this.gameObject.transform.localPosition.y, 1);
+                this.gameObject.transform.localPosition = new Vector3(-17f, this.gameObject.transform.localPosition.y, 1);
                 break;
         }
     }

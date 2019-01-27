@@ -2,6 +2,9 @@
 
 public class GameManager : MonoBehaviour
 {
+    public const int MAX_PLAYERS = 4;
+    public const int MAX_TEAMS = 2;
+
     public bool movingLeft;
     public bool movingRight;
 
@@ -12,6 +15,9 @@ public class GameManager : MonoBehaviour
     public bool player2TurningLeft;
     public bool player2TurningRight;
     public bool player2Firing;
+
+    public int[] teamChoices;
+    public GameObject airConsoleGO;
 
     private static GameManager m_instance = null;
     public static GameManager instance
@@ -40,5 +46,12 @@ public class GameManager : MonoBehaviour
         }
         m_instance = this;
         DontDestroyOnLoad(gameObject);
+
+        teamChoices = new int[MAX_PLAYERS] {0, 0, 0, 0};
+    }
+
+    public static int GetMaxPlayers()
+    {
+        return MAX_PLAYERS;
     }
 }

@@ -136,7 +136,7 @@ public class FallingPlayerUpdates : MonoBehaviour
         curLives -= damagePerMissle;
         lastLife.SetActive(false);
         takeCareOfHit = true;
-        return numLives <= 0;
+        return curLives < 0;
     }
 
 }

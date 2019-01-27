@@ -276,10 +276,4 @@ public class GameManager : MonoBehaviour
         AirConsole.instance.onConnect += OnConnect;
 		AirConsole.instance.onMessage += OnMessage;
     }
-
-    private void RemoveCallbacks()
-    {
-        AirConsole.instance.onConnect -= OnConnect;
-		AirConsole.instance.onMessage -= OnMessage;
-    }
 }

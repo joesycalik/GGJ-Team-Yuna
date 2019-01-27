@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using NDream.AirConsole;
+using Newtonsoft.Json.Linq;
 
 public class FallingPlayerUpdates : MonoBehaviour
 {
@@ -111,7 +113,18 @@ public class FallingPlayerUpdates : MonoBehaviour
         numLives -= damagePerMissle;
         gameObject.GetComponent<AudioSource>().Play(0);
         takeCareOfHit = true;
+        SendVibrateToController();
         return numLives <= 0;
+    }
+
+    private void SendVibrateToController() {
+        int[] ids = GameManager.instance.teamChoices;
+        for (int i = 0; i < ids.Length; i++) {
+            if (ids[i] == 1) {
+                AirConsole.instance.Message(AirConsole.instance.ConvertPlayerNumberToDeviceId(i), "hit");
+                Debug.Log("hit sent");
+            }
+        }
     }
 
 }

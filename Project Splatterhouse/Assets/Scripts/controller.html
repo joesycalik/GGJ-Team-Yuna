@@ -21,6 +21,9 @@
           }
 
           airconsole.onMessage = function(from, data) {
+            if (data == "hit") {
+              vibrate(1000);
+            }
             console.log("onMessage", from, data);
             document.getElementById("content").innerHTML = "device " + from + " says: " + data;
           }
